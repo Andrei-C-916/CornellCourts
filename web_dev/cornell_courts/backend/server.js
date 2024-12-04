@@ -124,6 +124,35 @@ app.post('/api/users/getUsers', async (req, res) => {
   }
 });
 
+// User leaves a game
+app.post('/api/users/:uid/leaveGame', async (req, res) => {
+  try {
+    const { uid } = req.params; // User ID
+    const { gameId } = req.body; // Game ID to leave
+
+    const userRef = db.collection('users').doc(uid);
+    const gameRef = db.collection('games').doc(gameId);
+
+    await db.runTransaction(async (transaction) => {
+      // Remove the game from the user's joinedGames list
+      transaction.update(userRef, {
+        joinedGames: admin.firestore.FieldValue.arrayRemove(gameId),
+      });
+
+      // Remove the user from the game's joinedUsers list
+      transaction.update(gameRef, {
+        joinedUsers: admin.firestore.FieldValue.arrayRemove(uid),
+      });
+    });
+
+    res.status(200).json({ message: 'Successfully left the game' });
+  } catch (error) {
+    console.error('Error leaving game:', error);
+    res.status(500).json({ error: 'Failed to leave the game' });
+  }
+});
+
+
 // Get user's joined games
 app.get('/api/users/:uid/joinedGames', async (req, res) => {
   try {

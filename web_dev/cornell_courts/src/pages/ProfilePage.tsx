@@ -1,5 +1,3 @@
-// src/pages/ProfilePage.tsx
-
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { useAuth } from "../contexts/AuthContext";
@@ -10,6 +8,7 @@ import {
   CardContent,
   Box,
   Container,
+  Button,
 } from "@mui/material";
 import axios from "axios";
 import "./ProfilePage.css";
@@ -34,6 +33,29 @@ const ProfilePage: React.FC = () => {
 
     fetchJoinedGames();
   }, [user]);
+
+  const handleLeaveGame = async (gameId: string) => {
+    if (!user) return;
+
+    try {
+      await axios.post(
+        `http://localhost:5000/api/users/${user.uid}/leaveGame`,
+        {
+          gameId,
+        }
+      );
+      alert("Successfully left the game!");
+
+      // Refresh the joined games list
+      const response = await axios.get(
+        `http://localhost:5000/api/users/${user.uid}/joinedGames`
+      );
+      setJoinedGames(response.data);
+    } catch (error) {
+      console.error("Error leaving the game:", error);
+      alert("Failed to leave the game.");
+    }
+  };
 
   return (
     <div className="profile-page">
@@ -65,6 +87,14 @@ const ProfilePage: React.FC = () => {
                     Location: {game.location}
                   </Typography>
                   <Typography variant="body1">Time: {game.time}</Typography>
+                  <Button
+                    variant="outlined"
+                    color="secondary"
+                    onClick={() => handleLeaveGame(game.id)}
+                    style={{ marginTop: "10px" }}
+                  >
+                    Leave Game
+                  </Button>
                 </CardContent>
               </Card>
             ))
