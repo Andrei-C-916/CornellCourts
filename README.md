@@ -1,5 +1,5 @@
 ﻿# Cornell Courts
-Cornell Courts is a web application designed to help Cornellians connect, play, and stay active by scheduling and joining pickup sports games.
+#Cornell Courts is a web application designed to help Cornellians connect, play, and stay active by scheduling and joining pickup sports games.
 
 Features
 User Authentication: Secure login using Google Firebase.
