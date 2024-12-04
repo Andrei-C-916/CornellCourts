@@ -7,6 +7,10 @@
     padding: 20px;
     background-color: #fdfdfd;
     position: relative; /* Ensures proper positioning for FAB */
+    height: 100vh !important;
+    overflow-y: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
   }
   
   .games-container {
@@ -14,6 +18,12 @@
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
     padding: 20px;
+    max-height: calc(100vh - 150px) !important;
+    overflow-y: auto !important;
+  }
+
+  .feed{
+    overflow-y: auto;
   }
   
   .game-card {
@@ -25,7 +35,9 @@
   }
   
   .game-card:hover {
-    transform: scale(1.02);
+    transform: scale(1) !important;
+    border-color: #ff7f50 !important;
+    background-color: rgb(255, 247, 238);
   }
   
   .modal-content {
