@@ -57,6 +57,14 @@ const ProfilePage: React.FC = () => {
     }
   };
 
+  const formatTime = (timestamp: string | Date): string => {
+    const date = new Date(timestamp);
+    return new Intl.DateTimeFormat("en-US", {
+      dateStyle: "short",
+      timeStyle: "short",
+    }).format(date);
+  };
+
   return (
     <div className="profile-page">
       <Navbar />
@@ -86,7 +94,9 @@ const ProfilePage: React.FC = () => {
                   <Typography variant="body1">
                     Location: {game.location}
                   </Typography>
-                  <Typography variant="body1">Time: {game.time}</Typography>
+                  <Typography variant="body1">
+                    Time: {formatTime(game.time)}
+                  </Typography>
                   <Button
                     variant="outlined"
                     color="secondary"

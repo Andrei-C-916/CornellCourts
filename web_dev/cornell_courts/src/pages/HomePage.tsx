@@ -34,6 +34,14 @@ const HomePage: React.FC = () => {
   const [openModal, setOpenModal] = useState(false);
   const [modalUserList, setModalUserList] = useState<any[]>([]);
 
+  const formatTime = (timestamp: string | Date): string => {
+    const date = new Date(timestamp);
+    return new Intl.DateTimeFormat("en-US", {
+      dateStyle: "short",
+      timeStyle: "short",
+    }).format(date);
+  };
+
   useEffect(() => {
     const fetchGames = async () => {
       try {
@@ -163,7 +171,9 @@ const HomePage: React.FC = () => {
                 <Typography variant="body1">
                   Location: {game.location}
                 </Typography>
-                <Typography variant="body1">Time: {game.time}</Typography>
+                <Typography variant="body1">
+                  Time: {formatTime(game.time)}
+                </Typography>
                 <Typography variant="body1">
                   <span
                     style={{ cursor: "pointer", color: "blue" }}

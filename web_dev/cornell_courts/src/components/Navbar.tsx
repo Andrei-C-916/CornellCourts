@@ -1,5 +1,3 @@
-// src/components/Navbar.tsx
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -36,7 +34,7 @@ const Navbar: React.FC = () => {
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      navigate("/signup"); // Redirect to the login page
+      navigate("/signup");
       handleMenuClose();
     } catch (error) {
       console.error("Error logging out:", error);
@@ -65,6 +63,9 @@ const Navbar: React.FC = () => {
           <MenuItem onClick={() => handleNavigate("/")}>Home Page</MenuItem>
           <MenuItem onClick={() => handleNavigate("/profile")}>
             My Profile
+          </MenuItem>
+          <MenuItem onClick={() => handleNavigate("/create-game")}>
+            Schedule a Game
           </MenuItem>
           {user && <MenuItem onClick={handleLogout}>Logout</MenuItem>}
         </Menu>
