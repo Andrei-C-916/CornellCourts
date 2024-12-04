@@ -1,0 +1,32 @@
+/* src/pages/ProfilePage.css */
+
+.profile-page {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  padding-top: 50px !important;
+    background-color: #fdfdfd;
+  }
+  
+  .games-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding-top: 20px;
+  }
+  
+  .game-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+    padding: 20px;
+  }
+  
+  .game-card:hover {
+    transform: scale(1.02);
+  }
+  
+  .profile-page .MuiAvatar-root {
+    border: 2px solid #ff7f50;
+  }
+  

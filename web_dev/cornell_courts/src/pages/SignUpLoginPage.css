@@ -1,0 +1,76 @@
+/* src/pages/SignUpLoginPage.css */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+.sign-up-page {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr auto;
+  background: linear-gradient(to bottom, #ff7f50, #ff6347);
+  background-size: auto;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+.header {
+  grid-column: 1;
+  align-self: start;
+  padding: 20px;
+}
+
+.title {
+  white-space: nowrap;
+  font-size: 8rem !important;
+  font-weight: 800;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+}
+
+.tagline {
+  margin-left: 10px !important;
+  font-weight: 600;
+  color: white;
+  margin-top: 10px;
+}
+
+.info-section {
+  grid-column: 1;
+  align-self: left;
+  text-align: left;
+  margin-top: 60px;
+  padding: 40px 20px 0 20px;
+  margin-left: 10px !important;
+}
+
+.info-item {
+  margin-bottom: 30px;
+  color: white;
+}
+
+.sign-in-section {
+  grid-column: 1 / 2;
+  align-self: end;
+  padding: 20px;
+}
+
+.sign-in-button {
+  font-weight: bold;
+  text-transform: none;
+  font-size: 1.7rem !important;
+  background-color: rgb(255, 255, 255) !important;
+  color: #ff6347 !important;
+  margin-left: 10px !important;
+  margin-bottom: 75px !important;
+}
+
+.sign-in-button:hover {
+  background-color:  #ff6347 !important;
+  color: #ffffff !important;
+  border: 2px solid white; 
+}

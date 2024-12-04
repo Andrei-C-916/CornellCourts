@@ -1,32 +1,61 @@
-import React, { useState } from "react";
+// src/pages/SignUpLoginPage.tsx
+
+import React, { useEffect } from "react";
+import { Button, Typography, Box } from "@mui/material";
+import { useAuth } from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
+import "./SignUpLoginPage.css";
 
 const SignUpLoginPage: React.FC = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { user, signInWithGoogle } = useAuth();
+  const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Email:", email, "Password:", password);
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
+
+  const handleSignIn = async () => {
+    await signInWithGoogle();
   };
 
   return (
-    <div>
-      <h1>Sign Up / Login</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Submit</button>
-      </form>
+    <div className="sign-up-page">
+      {/* Top Left Section */}
+      <Box className="header">
+        <Typography variant="h1" className="title">
+          Cornell Courts
+        </Typography>
+        <Typography variant="h3" className="tagline">
+          Connect. Play. Stay Active.
+        </Typography>
+      </Box>
+
+      {/* Right Section */}
+      <Box className="info-section">
+        <Typography variant="h4" className="info-item">
+          Discover and join pickup games nearby.
+        </Typography>
+        <Typography variant="h4" className="info-item">
+          Create games and invite your friends.
+        </Typography>
+        <Typography variant="h4" className="info-item">
+          Filter games by sport, location, and skill level.
+        </Typography>
+      </Box>
+
+      {/* Bottom Left Section */}
+      <Box className="sign-in-section">
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleSignIn}
+          className="sign-in-button"
+        >
+          Sign in to get started!
+        </Button>
+      </Box>
     </div>
   );
 };
